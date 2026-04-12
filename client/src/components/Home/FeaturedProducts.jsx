@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
 import ProductCard from '../Products/ProductCard';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);

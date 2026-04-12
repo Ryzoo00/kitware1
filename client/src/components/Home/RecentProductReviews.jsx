@@ -4,7 +4,7 @@ import { Star, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 const RecentProductReviews = () => {
   const [reviews, setReviews] = useState([]);

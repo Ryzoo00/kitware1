@@ -6,7 +6,7 @@ import axios from 'axios';
 import ProductCard from '../components/Products/ProductCard';
 import Sidebar from '../components/Products/Sidebar';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
