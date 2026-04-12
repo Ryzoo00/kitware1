@@ -105,8 +105,8 @@ app.use((req, res) => {
   });
 });
 
-// Connect to database and start server
-const startServer = async () => {
+// Connect to database
+const connectDatabase = async () => {
   try {
     const dbConnected = await connectDB();
     
@@ -125,6 +125,16 @@ const startServer = async () => {
       }
     }
     
+    return dbConnected;
+  } catch (error) {
+    console.error('Failed to connect database:', error);
+    return false;
+  }
+};
+
+// For local development
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  connectDatabase().then((dbConnected) => {
     app.listen(config.PORT, () => {
       console.log(`Server running on port ${config.PORT}`);
       console.log(`Environment: ${config.NODE_ENV}`);
@@ -132,10 +142,11 @@ const startServer = async () => {
         console.log('⚠️  Running in DEMO mode without database');
       }
     });
-  } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
-  }
-};
+  });
+} else {
+  // For Vercel serverless - connect to DB on cold start
+  connectDatabase();
+}
 
-startServer();
+// Export for Vercel serverless
+export default app;
